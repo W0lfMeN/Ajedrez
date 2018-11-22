@@ -15,6 +15,19 @@ public class Posicion {
     private int fila;
     private char columna;
     
+   /*Creamos el constructor que acepte como parametros la fila y columna y que los asigne 
+     a los atributos si son correctos y si no que lance una excepcion*/
+    
+    public Posicion (int fila,char columna)
+    { //Se llama al metodo set ya que el es el encargado de validar la fila y la columna
+        setFila(fila);
+        setColumna(columna);
+    }
+            
+           
+    
+    
+    
     
     /*creamos los metodos get y set y si para el set la fila no es del 1 al 8 
     ni la columna es desde la a hasta la h muestre un illegalArgumentException*/
@@ -24,10 +37,13 @@ public class Posicion {
     }
 
     public void setFila(int fila) {
-        if (fila>=1 || fila<=8)
+        if (fila>=1 || fila<=8){
             this.fila = fila;
-        else
+        }
+        else{
             throw new IllegalArgumentException("Error, se ha introducido una fila incorrecta");
+        }
+            
     }
 
     public char getColumna() {
@@ -35,9 +51,13 @@ public class Posicion {
     }
 
     public void setColumna(char columna) {
-        if(columna!='a' & columna!='b' & columna!='c' & columna!='d' & columna!='e' & columna!='f' & columna!='g' & columna!='h')
-            throw new IllegalArgumentException("Error, se ha introducido una columna incorrecta");
-        else
-            this.columna = columna;
+        if(columna!='a' & columna!='b' & columna!='c' & columna!='d' & columna!='e' & columna!='f' & columna!='g' & columna!='h'){
+           throw new IllegalArgumentException("Error, se ha introducido una columna incorrecta"); 
+        }
+            
+        else{
+           this.columna = columna; 
+        }
+            
     }
 }
