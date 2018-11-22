@@ -24,6 +24,12 @@ public class Posicion {
         setColumna(columna);
     }
             
+    /* crea un constructor copia para esta clase*/
+    public Posicion(final Posicion copia)
+    {
+        this.columna=copia.columna;
+        this.fila=copia.fila;
+    }
            
     
     
