@@ -29,38 +29,7 @@ public class Posicion {
     {
         this.columna=copia.columna;
         this.fila=copia.fila;
-    }
-
-    
-    //Creamos el metodo equals que compara la igualdad de dos objetos de la clase
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Posicion other = (Posicion) obj;
-        if (this.fila != other.fila) {
-            return false;
-        }
-        if (this.columna != other.columna) {
-            return false;
-        }
-        return true;
-    }
-           
-    
+    }    
     
     
     
@@ -95,4 +64,42 @@ public class Posicion {
         }
             
     }
+
+    //creamos el metodo equals que compara la igualdad de los objetos de la clase
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + this.fila;
+        hash = 47 * hash + this.columna;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Posicion other = (Posicion) obj;
+        if (this.fila != other.fila) {
+            return false;
+        }
+        if (this.columna != other.columna) {
+            return false;
+        }
+        return true;
+    }
+
+    //creamos el metodo toString que devuleve un String y será la representacion de la fil ay columna
+    @Override
+    public String toString() {
+        return "Posicion{" + "fila=" + fila + ", columna=" + columna + '}';
+    }
+    
+    
 }
