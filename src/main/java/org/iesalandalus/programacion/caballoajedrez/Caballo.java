@@ -17,4 +17,23 @@ public class Caballo {
     private Color color;
     private Posicion posicion;
     
+    //creamos los metodos get y set para cada atributo
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Posicion getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(Posicion posicion) {
+        this.posicion = posicion;
+    }
+    
+    
 }
