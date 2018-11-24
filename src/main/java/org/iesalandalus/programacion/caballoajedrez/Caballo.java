@@ -27,7 +27,7 @@ public class Caballo {
     
     /*Crea un constructor para la clase que acepte como parámetro el color que creará un caballo    
       de dicho color cuya posición será '1b' si es blanco o '8b' si es negro..*/
-    public Caballo(Color color,Posicion posicion){
+    public Caballo(Color color){
         if (color==null) //valida que el color introducido no sea nulo, es decir, no es ni blanco ni negro
         {
         throw new IllegalArgumentException("Error, se ha introducido un color incorrecto");
@@ -41,10 +41,48 @@ public class Caballo {
         }
         else{
             posicion=new Posicion(8,'b');
+        }   
+    }
+    
+    /*Crea un constructor para la clase que acepte como parámetros el color y la columna inicial.
+      La columna inicial debe ser la 'b' o la 'g' (de lo contrario debe lanzar la excepción IllegalArgumentException con un mensaje adecuado)
+      y creara un caballo del color dado y colocado en dicha columna y cuya fila será la 1 si el blanco y la 8 si es el negro.*/
+    
+    public Caballo(Color color,char columnaInicial){
+    if (color==null) //valida que el color introducido no sea nulo, es decir, no es ni blanco ni negro
+        {
+        throw new IllegalArgumentException("Error, se ha introducido un color incorrecto");
+        }
+        else
+        {
+            this.color=color;
+        }
+        if(color==Color.BLANCO){
+            posicion=new Posicion(1,'b');
+        }
+        else{
+            posicion=new Posicion(8,'b');
+        }
+        
+        if(columnaInicial!='b' & columnaInicial!='g'){
+            throw new IllegalArgumentException("Error, la columna introducida es incorrecta");
+        }
+        if(this.color==Color.BLANCO & columnaInicial=='b'){
+            this.posicion=new Posicion (1,'b');
+        }
+        if(this.color==Color.BLANCO & columnaInicial=='g'){
+            this.posicion=new Posicion (1,'g');
+        }
+        if(this.color==Color.NEGRO & columnaInicial=='b'){
+            this.posicion=new Posicion (8,'b');
+        }
+        if(this.color==Color.NEGRO & columnaInicial=='g'){
+            this.posicion=new Posicion (8,'g');
         }
             
-        
+            
     }
+
 
 
 
