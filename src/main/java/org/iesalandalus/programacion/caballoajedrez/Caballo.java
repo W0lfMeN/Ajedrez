@@ -17,6 +17,19 @@ public class Caballo {
     private Color color;
     private Posicion posicion;
     
+    //creamos el contructor por defecto que cree un caballo negro en la posicion '8b'
+    
+    public Caballo()
+    { //para hacerlo primero se nombra el atributo y a continuacion la clase a la que pertenece seguido del atributo de dicha clase.
+        color=Color.NEGRO;
+        posicion=new Posicion(8,'b');
+        
+    }
+    
+
+
+
+
     //creamos los metodos get y set para cada atributo
 
     public Color getColor() {
