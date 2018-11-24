@@ -22,10 +22,29 @@ public class Caballo {
     public Caballo()
     { //para hacerlo primero se nombra el atributo y a continuacion la clase a la que pertenece seguido del atributo de dicha clase.
         color=Color.NEGRO;
-        posicion=new Posicion(8,'b');
-        
+        posicion=new Posicion(8,'b');        
     }
     
+    /*Crea un constructor para la clase que acepte como parámetro el color que creará un caballo    
+      de dicho color cuya posición será '1b' si es blanco o '8b' si es negro..*/
+    public Caballo(Color color,Posicion posicion){
+        if (color==null) //valida que el color introducido no sea nulo, es decir, no es ni blanco ni negro
+        {
+        throw new IllegalArgumentException("Error, se ha introducido un color incorrecto");
+        }
+        else
+        {
+            this.color=color;
+        }
+        if(color==Color.BLANCO){
+            posicion=new Posicion(1,'b');
+        }
+        else{
+            posicion=new Posicion(8,'b');
+        }
+            
+        
+    }
 
 
 
