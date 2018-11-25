@@ -19,7 +19,7 @@ public class Caballo {
     private Color color;
     private Posicion posicion;
     private static final String MOVIMIENTO_INCORRECTO="Movimiento incorrecto"; //sirve para cuando se introduce un movimiento incorrecto
-    
+    private Caballo caballo;
     //creamos el contructor por defecto que cree un caballo negro en la posicion '8b'
     
     public Caballo()
@@ -30,67 +30,66 @@ public class Caballo {
     
     /*Crea un constructor para la clase que acepte como parámetro el color que creará un caballo    
       de dicho color cuya posición será '1b' si es blanco o '8b' si es negro..*/
+    /**
+     * @param color
+     * BLANCO
+     * NEGRO
+     */
     public Caballo(Color color){
-        if (color==null) //valida que el color introducido no sea nulo, es decir, no es ni blanco ni negro
-        {
-        throw new IllegalArgumentException("Error, se ha introducido un color incorrecto");
-        }
-        else
-        {
-            this.color=color;
-        }
-        if(color==Color.BLANCO){
-            posicion=new Posicion(1,'b');
-        }
-        else{
-            posicion=new Posicion(8,'b');
-        }   
+       this.color=color;
+       
+       switch(color){
+           case BLANCO:
+               posicion=new Posicion(1,'b');
+               break;
+           case NEGRO:
+               posicion=new Posicion(8,'b');
+               break;
+       }
     }
     
     /*Crea un constructor para la clase que acepte como parámetros el color y la columna inicial.
       La columna inicial debe ser la 'b' o la 'g' (de lo contrario debe lanzar la excepción IllegalArgumentException con un mensaje adecuado)
       y creara un caballo del color dado y colocado en dicha columna y cuya fila será la 1 si el blanco y la 8 si es el negro.*/
-    
-    public Caballo(Color color,char columnaInicial){
-    if (color==null) //valida que el color introducido no sea nulo, es decir, no es ni blanco ni negro
-        {
-        throw new IllegalArgumentException("Error, se ha introducido un color incorrecto");
-        }
-        else
-        {
-            this.color=color;
-        }
-        if(color==Color.BLANCO){
-            posicion=new Posicion(1,'b');
-        }
-        else{
-            posicion=new Posicion(8,'b');
-        }
+
+    /**
+     *
+     * @param color
+     * @param columnaInicial
+     */
+    public Caballo(Color color,char columnaInicial) throws OperationNotSupportedException {
+        setColor(color);
         
+        if(columnaInicial==0){
+            throw new IllegalArgumentException("Error, columna introducida incorrecta");
+        }
         if(columnaInicial!='b' & columnaInicial!='g'){
-            throw new IllegalArgumentException("Error, la columna introducida es incorrecta");
+            throw new IllegalArgumentException("Error, columna introducida incorrecta");
         }
-        if(this.color==Color.BLANCO & columnaInicial=='b'){
-            this.posicion=new Posicion (1,'b');
+        try{
+            if(color==Color.BLANCO & columnaInicial=='b'){
+                    posicion=new Posicion (1,'b');
+                }
+                if(color==Color.BLANCO & columnaInicial=='g'){
+                    posicion=new Posicion (1,'g');
+                }
+                if(color==Color.NEGRO & columnaInicial=='b'){
+                    posicion=new Posicion (8,'b');
+                }
+                if(color==Color.NEGRO & columnaInicial=='g'){
+                    posicion=new Posicion (8,'g');
+                }
+        }catch (IllegalArgumentException e){
+            System.out.println("MOVIMIENTO INCORRECTO");
+            throw new OperationNotSupportedException(MOVIMIENTO_INCORRECTO);
         }
-        if(this.color==Color.BLANCO & columnaInicial=='g'){
-            this.posicion=new Posicion (1,'g');
-        }
-        if(this.color==Color.NEGRO & columnaInicial=='b'){
-            this.posicion=new Posicion (8,'b');
-        }
-        if(this.color==Color.NEGRO & columnaInicial=='g'){
-            this.posicion=new Posicion (8,'g');
-        }
-            
-            
     }
     
     /*crea el metodo mover que dependiendo del movimiento modificara la posicion del mismo
       o si no puede realizar dicho movimiento lanza una excepcion del tipo OperationNotSupportedException
       y no modificara la posicion del caballo*/
     
-    public void moverCaballo(Direccion direccion,int x, char y ) throws OperationNotSupportedException {
+    public void moverCaballo(Direccion direccion) throws OperationNotSupportedException {
      
         if (direccion==null){
             throw new IllegalArgumentException("Error, se ha introducido una direccion nula");
@@ -163,9 +162,7 @@ public class Caballo {
                     throw new OperationNotSupportedException(MOVIMIENTO_INCORRECTO);
                 }
                 break;
-            default:
-                break;
-        }
+        } 
     }
 
     //creamos el metodo equals para comparar los objetos de la clase
