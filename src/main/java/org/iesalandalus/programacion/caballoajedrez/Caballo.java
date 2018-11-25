@@ -5,6 +5,7 @@
  */
 package org.iesalandalus.programacion.caballoajedrez;
 
+import javax.naming.OperationNotSupportedException;
 /**
  *
  * @author Carlos
@@ -16,6 +17,7 @@ public class Caballo {
     
     private Color color;
     private Posicion posicion;
+    private static final String MOVIMIENTO_INCORRECTO="Movimiento incorrecto"; //sirve para cuando se introduce un movimiento incorrecto
     
     //creamos el contructor por defecto que cree un caballo negro en la posicion '8b'
     
@@ -82,7 +84,88 @@ public class Caballo {
             
             
     }
-
+    
+    /*crea el metodo mover que dependiendo del movimiento modificara la posicion del mismo
+      o si no puede realizar dicho movimiento lanza una excepcion del tipo OperationNotSupportedException
+      y no modificara la posicion del caballo*/
+    
+    public void moverCaballo(Direccion direccion,int x, char y ) throws OperationNotSupportedException {
+     
+        if (direccion==null){
+            throw new IllegalArgumentException("Error, se ha introducido una direccion nula");
+        }
+        if ((posicion.getFila())<=0 & (posicion.getColumna())<=0){
+            throw new IllegalArgumentException("Error, no puede haber fila y columna menor o igual que 0");
+        }
+        switch(direccion){
+            case ARRIBA_DERECHA:
+                try{
+                    posicion.setFila(posicion.getFila()+2);
+                    posicion.setColumna((char)(posicion.getColumna()+1));
+                }catch (IllegalArgumentException e){
+                    throw new OperationNotSupportedException(MOVIMIENTO_INCORRECTO);
+                }
+                break;
+            case ARRIBA_IZQUIERDA:
+                try{
+                    posicion.setFila(posicion.getFila()+2);
+                    posicion.setColumna((char)(posicion.getColumna()-1));
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException(MOVIMIENTO_INCORRECTO);
+                }
+                break;
+            case ABAJO_DERECHA:
+                try{
+                    posicion.setFila(posicion.getFila()-2);
+                    posicion.setColumna((char)(posicion.getColumna()+1));
+                }catch (IllegalArgumentException e){
+                    throw new OperationNotSupportedException(MOVIMIENTO_INCORRECTO);
+                }
+                break;
+            case ABAJO_IZQUIERDA:
+                try{
+                    posicion.setFila(posicion.getFila()-2);
+                    posicion.setColumna((char)(posicion.getColumna()-1));
+                }catch (IllegalArgumentException e){
+                    throw new OperationNotSupportedException(MOVIMIENTO_INCORRECTO);
+                }
+                break;
+            case DERECHA_ARRIBA:
+                try{
+                    posicion.setFila(posicion.getFila()+1);
+                    posicion.setColumna((char)(posicion.getColumna()+2));
+                }catch (IllegalArgumentException e){
+                    throw new OperationNotSupportedException(MOVIMIENTO_INCORRECTO);
+                }
+                break;
+            case DERECHA_ABAJO:
+                 try{
+                    posicion.setFila(posicion.getFila()-1);
+                    posicion.setColumna((char)(posicion.getColumna()+2));
+                }catch (IllegalArgumentException e){
+                    throw new OperationNotSupportedException(MOVIMIENTO_INCORRECTO);
+                }
+                break;
+            case IZQUIERDA_ARRIBA:
+                 try{
+                    posicion.setFila(posicion.getFila()+1);
+                    posicion.setColumna((char)(posicion.getColumna()-2));
+                }catch (IllegalArgumentException e){
+                    throw new OperationNotSupportedException(MOVIMIENTO_INCORRECTO);
+                }
+                break;
+            case IZQUIERDA_ABAJO:
+                 try{
+                    posicion.setFila(posicion.getFila()-1);
+                    posicion.setColumna((char)(posicion.getColumna()-2));
+                }catch (IllegalArgumentException e){
+                    throw new OperationNotSupportedException(MOVIMIENTO_INCORRECTO);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
 
 
