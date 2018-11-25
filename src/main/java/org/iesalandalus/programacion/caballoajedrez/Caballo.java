@@ -199,6 +199,13 @@ public class Caballo {
         return true;
     }
     
+    //creamos el metodo toString que devuelve un String que será la representacion de dicho objeto
+
+    @Override
+    public String toString() {
+        return "Caballo{" + "color=" + color + ", posicion=" + posicion + '}';
+    }
+    
 
 
 
